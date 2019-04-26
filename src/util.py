@@ -17,21 +17,21 @@ def load_dataset(ipc = 10000):
         classes: list of doodle classes
     """
     files = os.listdir("..\\data")
-    print(files)
     ind = 0
     xs = []
     ys = []
     classNames = []
     for file in files:
+        fileSplit = file.split('.')
+        print('Loading ' + fileSplit[0][18:] + ' data.')
+        classNames.append(fileSplit[0][18:])
         x = np.load("..\\data\\" + file)
         x = x.astype('float32')/255
         xs.append(x[0:ipc, :])
         y = np.array([float(ind) for i in range(ipc)])
         ys.append(y.reshape(ipc, 1))
         ind += 1
-        file = file.split('.')
-        classNames.append(file[0][18:])
-        print(file[0][18:])
+
     xs = np.array(xs)
     ys = np.array(ys)
     xs = xs.reshape(xs.shape[0]*xs.shape[1], xs.shape[2])
@@ -43,11 +43,7 @@ def one_hot(y, C=None):
     if C is None:
         C = int(y.max() + 1)
 
-    y_one_hot = np.zeros((m, C))
-    y_one_hot[np.arange(m), y.astype(int)] = 1
-
-    return y_one_hot
-
+    return np.squeeze(np.eye(C)[y.astype('int')])
 
 def plot_cm(model, x, y, target_names, filepath):
     cm = confusion_matrix(y, model.clf.predict(x))
@@ -70,3 +66,9 @@ def plot_cm(model, x, y, target_names, filepath):
     plt.xlabel('Predicted label')
     plt.tight_layout()
     fig.savefig(filepath)
+
+def plotImage(imgArr, label):
+    imgArr = np.reshape(imgArr,(28, 28))
+    plt.imshow(imgArr, cmap='gray')
+    plt.title(label)
+    plt.show()
