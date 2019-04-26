@@ -1,0 +1,10 @@
+name: cs221Project
+channels:
+  - defaults
+dependencies:
+  - matplotlib
+  - numpy
+  - pip
+  - python=3.6
+  - pandas
+  - scikit-learn
