@@ -1,16 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-import re
-
 from sklearn.metrics import confusion_matrix
 import itertools
 
 
-def load_dataset(ipc = 10000):
+def load_dataset(ipc = 20000):
     """Load dataset from .npy files
-    Agrs:
-        ipc = number of images per class take to build dataset
+    Args:
+        ipc: number of images per class to take to build dataset
     Returns:
         xs: Numpy array of x-values (inputs).
         ys: Numpy array of y-values (labels).
@@ -23,7 +21,7 @@ def load_dataset(ipc = 10000):
     classNames = []
     for file in files:
         fileSplit = file.split('.')
-        print('Loading ' + fileSplit[0][18:] + ' data.')
+        print('--Loading ' + fileSplit[0][18:] + ' data.')
         classNames.append(fileSplit[0][18:])
         x = np.load("..\\data\\" + file)
         x = x.astype('float32')/255

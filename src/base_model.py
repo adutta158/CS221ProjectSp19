@@ -6,8 +6,7 @@ class BaseModel(object):
         Args:
             step_size: Step size for iterative solvers only.
             max_iter: Maximum number of iterations for the solver.
-            eps: Threshold for determining convergence.
-            theta_0: Initial guess for theta. If None, use the zero vector.
+            threshold: Threshold for determining convergence.
             verbose: Print loss values during training.
         """
         self.step_size = step_size
@@ -25,8 +24,7 @@ class BaseModel(object):
         raise NotImplementedError('Subclass of BaseModel must implement train method.')
 
     def predict(self, x):
-        """Make a prediction given new inputs x. Specifically, provide predicted probabilities for each element of x
-        belonging to a class c
+        """Make a prediction given new inputs x.
 
         m - number of samples in the set x
         n - number of features

@@ -1,13 +1,9 @@
 import os
 import numpy as np
 import util
-
-from base_model import BaseModel
 from logistic_regression_model import LogisticRegressionModel
-
-from sklearn.metrics import classification_report, accuracy_score, f1_score, make_scorer, log_loss
+from sklearn.metrics import classification_report, accuracy_score, f1_score, log_loss
 from sklearn.model_selection import train_test_split
-
 import matplotlib.pyplot as plt
 
 seed = 42 # for reproducibility
@@ -33,12 +29,12 @@ if __name__ == '__main__':
     print('Starting...')
     print('Load data')
     x, y, classes = util.load_dataset()
-    x_temp, x_test, y_temp, y_test = train_test_split(x, y, test_size = 0.2, random_state = 42)
-    x_train, x_dev, y_train, y_dev = train_test_split(x_temp, y_temp, test_size=0.25, random_state=0)
+    x_temp, x_test, y_temp, y_test = train_test_split(x, y, test_size = 0.2, random_state = seed)
+    x_train, x_dev, y_train, y_dev = train_test_split(x_temp, y_temp, test_size=0.25, random_state = seed)
 
     # BaseLine
     print('Running baseline model')
-    baseline_model = LogisticRegressionModel(verbose=True)
+    baseline_model = LogisticRegressionModel(verbose = True)
     loss = experiment(baseline_model, x_train, y_train, x_dev, y_dev, 'baseline', classes)
     util.plot_cm(baseline_model, x_dev, y_dev, classes, './output/CM_Baseline.PNG')
 
