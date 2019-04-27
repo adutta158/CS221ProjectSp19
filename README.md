@@ -1,12 +1,12 @@
 # CS221 Project Spring '19 
 #### Classification <and Generation> of Hand-Drawn Doodles
 
-## Overleaf links:
+## Overleaf links
 - Project Proposal: https://www.overleaf.com/4471386335bswnnjtryszb
 - Progress Report: <TBA>
 - Final Report: <TBA>
 
-## Dataset:
+## Dataset
 - Download data for the classes listed below from [here] (https://console.cloud.google.com/storage/browser/quickdraw_dataset/full/numpy_bitmap?pli=1) and place in the data folder.
 - We are using the following classes for the project:
   1. Apple  
@@ -15,6 +15,7 @@
 
 ## Creating environment
 From the src folder, run "conda env create -f environment.yml"
+
 Next run "conda activate cs221Project"
 
 ## Structure
@@ -22,12 +23,13 @@ Next run "conda activate cs221Project"
 Base class for classification models. Contains 2 methods:
 * train
 * predict
+
 The different models that will be implemented will use this as the parent class.
 
 ### util.py
 Contains utility functions including the function to load the data.
 
-## experiment.py
+### experiment.py
 Used to run experiments on different models to pick the best models and hyperparamters.
 
 ## Authors
