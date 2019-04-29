@@ -23,21 +23,21 @@ def experiment(model, x_train, y_train, x_dev, y_dev, model_name, class_names):
 
     print(classification_report(util.one_hot(y_dev, c), util.one_hot(y_pred, c), target_names=class_names))
 
+    plt.rcParams.update({'font.size': 6})
     cm = confusion_matrix(y_dev, y_pred)
     cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
     fig = plt.figure()
     plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
     plt.title("Confusion matrix")
     plt.colorbar()
-    plt.rcParams.update({'font.size': 6})
     tick_marks = np.arange(len(class_names))
     plt.xticks(tick_marks, class_names, rotation=90)
     plt.yticks(tick_marks, class_names)
 
     thresh = cm.max() / 2.
     for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, format(cm[i, j], '.1f'),
-                 horizontalalignment="center",
+        plt.text(j, i, format(cm[i, j], '.2f').replace('.00', '').replace('0.', '.'),
+                 horizontalalignment="center", verticalalignment="center",
                  color="white" if cm[i, j] > thresh else "black")
 
     plt.ylabel('True label')
