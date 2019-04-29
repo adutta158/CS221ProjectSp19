@@ -1,20 +1,21 @@
-from sklearn.linear_model import LogisticRegression
 from base_model import BaseModel
+import scipy
 import util
+import numpy as np
 
 
-class LogisticRegressionModel(BaseModel):
-    """Perform logistic regression
+class MajorityClassifierModel(BaseModel):
+    """Perform majority class prediction
 
     Example usage:
-        > model = LogisticRegressionModel()
+        > model = MajorityClassifierModel()
         > model.train(x_train, y_train)
         > model.predict(x_eval)
     """
 
     def __init__(self, step_size=0.2, max_iter=1e5, threshold=1e-5, verbose=False, alpha=0, seed = None, penalty = 'l2', class_weight = None):
         BaseModel.__init__(self, step_size, max_iter, threshold, verbose)
-        self.clf = LogisticRegression(solver='lbfgs', multi_class='auto')
+        self.majorityClass = 0
         self.C = None
 
     def train(self, x, y):
@@ -26,10 +27,12 @@ class LogisticRegressionModel(BaseModel):
         """
         # *** START CODE HERE ***
         self.C = int(y.max() + 1)
-        self.clf.fit(x, y.ravel())
+
+
+        self.majorityClass = scipy.stats.mode(y, axis=None)[0]
 
         if self.verbose:
-            print("Inside LogisticRegressionModel.train, number of classes = {0}".format(self.C))
+            print("Inside MajorityClassifierModel.train, majority class = {0}".format(self.majorityClass))
         # *** END CODE HERE ***
 
     def predict(self, x):
@@ -46,5 +49,6 @@ class LogisticRegressionModel(BaseModel):
                     Outputs of shape (m, 1).
         """
         # *** START CODE HERE ***
-        return self.clf.predict(x)
+        y = np.array([self.majorityClass for i in range(x.shape[0])])
+        return y
         # *** END CODE HERE ***

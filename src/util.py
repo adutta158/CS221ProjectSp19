@@ -44,7 +44,7 @@ def one_hot(y, C=None):
     return np.squeeze(np.eye(C)[y.astype('int')])
 
 def plot_cm(model, x, y, target_names, filepath):
-    cm = confusion_matrix(y, model.clf.predict(x))
+    cm = confusion_matrix(y, model.predict(x))
 
     fig = plt.figure()
     plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
