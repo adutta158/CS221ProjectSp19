@@ -3,3 +3,10 @@
 src/__pycache__
 data/
 src/output/
+src/x_train.p
+src/y_train.p
+src/x_dev.p
+src/y_dev.p
+src/x_test.p
+src/y_test.p
+src/classes.p
