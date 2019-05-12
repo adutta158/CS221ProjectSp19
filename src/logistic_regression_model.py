@@ -12,9 +12,9 @@ class LogisticRegressionModel(BaseModel):
         > model.predict(x_eval)
     """
 
-    def __init__(self, step_size=0.2, max_iter=1e5, threshold=1e-5, verbose=False, alpha=0, seed = None, penalty = 'l2', class_weight = None):
+    def __init__(self, step_size=0.2, max_iter=1e5, threshold=1e-5, verbose=False, C=0, seed = None, penalty = 'l2', class_weight = None):
         BaseModel.__init__(self, step_size, max_iter, threshold, verbose)
-        self.clf = LogisticRegression(solver='lbfgs', multi_class='auto')
+        self.clf = LogisticRegression(solver='sag', multi_class='auto', max_iter = max_iter, C = C)
         self.C = None
 
     def train(self, x, y):
