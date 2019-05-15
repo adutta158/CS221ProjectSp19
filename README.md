@@ -3,7 +3,7 @@
 
 ## Overleaf links
 - Project Proposal: https://www.overleaf.com/4471386335bswnnjtryszb
-- Progress Report: <TBA>
+- Progress Report: https://www.overleaf.com/6295179215tkcmswtdvrdq
 - Final Report: <TBA>
 
 ## Dataset
