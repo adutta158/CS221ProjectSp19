@@ -3,15 +3,34 @@
 
 ## Overleaf links
 - Project Proposal: https://www.overleaf.com/4471386335bswnnjtryszb
-- Progress Report: https://www.overleaf.com/6295179215tkcmswtdvrdq
+- Progress Report: https://www.overleaf.com/2837455734bbxwgzvpvmty
 - Final Report: <TBA>
 
 ## Dataset
-- Download data for the classes listed below from [here] (https://console.cloud.google.com/storage/browser/quickdraw_dataset/full/numpy_bitmap?pli=1) and place in the data folder.
+- Download data for the classes listed below from [here](https://console.cloud.google.com/storage/browser/quickdraw_dataset/full/numpy_bitmap?pli=1) and place in the data folder.
 - We are using the following classes for the project:
-  1. Apple  
-  2. Candle
-  3. Door
+1. Apple
+2. Banana
+3. Bicycle
+4. Birthday Cake
+5. Butterfly
+6. Candle
+7. Computer
+8. Door
+9. Drums
+10. Firetruck
+11. Hat
+12. Horse
+13. Ice Cream
+14. Leaf
+15. Panda
+16. Peanut
+17. Pencil
+18. Rainbow
+19. Smiley Face
+20. Snowman
+21. Soccer Ball
+22. Umbrella
 
 ## Creating environment
 From the src folder, run "conda env create -f environment.yml"
@@ -32,7 +51,6 @@ Contains utility functions including the function to load the data.
 ### experiment.py
 Used to run experiments on different models to pick the best models and hyperparamters.
 
-#test change
 ## Authors 
 * **Sarah Robinson**
 * **Aparajita Dutta**
