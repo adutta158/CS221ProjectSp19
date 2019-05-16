@@ -5,7 +5,7 @@ from sklearn.metrics import confusion_matrix
 import itertools
 
 
-def load_dataset(ipc = 20000):
+def load_dataset(ipc = 50000):
     """Load dataset from .npy files
     Args:
         ipc: number of images per class to take to build dataset
