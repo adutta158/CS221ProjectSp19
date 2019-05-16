@@ -121,7 +121,8 @@ if __name__ == '__main__':
         print("0. Exit")
         print("---------------------------------------")
         i = int(input("Enter choice: "))
-
+        if i == 0:
+            break
         if i == 1:
             # BaseLine
             print('Running baseline model')
