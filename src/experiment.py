@@ -31,7 +31,7 @@ def experiment(model, x_train, y_train, x_dev, y_dev, model_name, class_names):
     cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
     fig = plt.figure()
     plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Reds)
-    plt.title("Baseline matrix")
+    plt.title("Confusion matrix")
     plt.colorbar()
     tick_marks = np.arange(len(class_names))
     plt.xticks(tick_marks, range(0, 22))#, rotation=90)
@@ -67,7 +67,7 @@ def experiment2(y_pred, y_dev, model_name):
     cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
     fig = plt.figure()
     plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Reds)
-    plt.title("Baseline matrix")
+    plt.title("Confusion matrix")
     plt.colorbar()
     tick_marks = np.arange(c)
     plt.xticks(tick_marks, range(0, 22))#, rotation=90)
