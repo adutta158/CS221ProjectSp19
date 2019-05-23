@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.naive_bayes import MultinomialNB
-import util.py
+import util
+from base_model import BaseModel
 
 class NaiveBayesMultinomialModel(BaseModel):
     """Perform logistic regression
@@ -9,11 +10,9 @@ class NaiveBayesMultinomialModel(BaseModel):
     > model.train(x_train, y_train)
     > model.predict(x_eval)
     """
-    def __init__(self, alpha=1.0, fit_prior=True, class_prior=None)
-one):
-        BaseModel.__init__(self, alpha=1.0, fit_prior=True, class_prior=None)
-        self.clf = GaussianNB()
-        clf.fit(x,y)
+    def __init__(self, step_size=0.2, max_iter=1e5, threshold=1e-5, verbose=False, alpha=1.0, fit_prior=True, class_prior=None):
+        BaseModel.__init__(self, step_size, max_iter, threshold, verbose)
+        self.clf = MultinomialNB()
 
     def train(self, x, y):
         """fit classifier
@@ -22,7 +21,7 @@ one):
             y: Training example labels. Shape (m,).
         """
         # *** START CODE HERE ***
-        self.clf.fit(self, x, y, None)
+        self.clf.fit(x, y)
         # *** END CODE HERE ***
 
     def predict(self, x):

@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.naive_bayes import GaussianNB
-import util.py
+import util
+from base_model import BaseModel
 
 class NaiveBayesGaussianModel(BaseModel):
     """Perform GaussianNB
@@ -10,10 +11,9 @@ class NaiveBayesGaussianModel(BaseModel):
     > model.predict(x_eval)
     """
 
-    def __init__(self, priors=None, var_smoothing=1e-09)
-one):
-        BaseModel.__init__(self,priors=None, var_smoothing=1e-09)
-        self.clf_pf = GaussianNB()
+    def __init__(self, step_size=0.2, max_iter=1e5, threshold=1e-5, verbose=False):
+        BaseModel.__init__(self, step_size, max_iter, threshold, verbose)
+        self.clf = GaussianNB()
 
     def train(self, x, y):
         """fit classifier
@@ -22,7 +22,7 @@ one):
             y: Training example labels. Shape (m,).
         """
         # *** START CODE HERE ***
-        self.clf_pf.partial_fit(x,y,np.unique(y))
+        self.clf.fit(x, y)
         # *** END CODE HERE ***
 
     def predict(self, x):
@@ -36,5 +36,5 @@ one):
                     Outputs of shape (m, 1)
         """
         # *** START CODE HERE ***
-        return self.clf_pf.predict(x)
+        return self.clf.predict(x)
         # *** END CODE HERE ***

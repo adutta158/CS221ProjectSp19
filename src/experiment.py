@@ -3,6 +3,9 @@ import numpy as np
 import util
 from logistic_regression_model import LogisticRegressionModel
 from majority_classifier_model import MajorityClassifierModel
+from naive_bayes_bernoulli_model import NaiveBayesBernoulliModel
+from naive_bayes_gaussian_model import NaiveBayesGaussianModel
+from naive_bayes_multinomial_model import NaiveBayesMultinomialModel
 from sklearn.metrics import classification_report, accuracy_score, f1_score, log_loss, confusion_matrix
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
@@ -118,6 +121,7 @@ if __name__ == '__main__':
         print("1. Run baseline model")
         print("2. Run oracle model")
         print("3. Run logistic regression model")
+        print("4. Run naive bayes model")
         print("0. Exit")
         print("---------------------------------------")
         i = int(input("Enter choice: "))
@@ -171,3 +175,15 @@ if __name__ == '__main__':
                 lr_model = LogisticRegressionModel(verbose = True, C = c)
                 loss = experiment(lr_model, x_train, y_train, x_dev, y_dev, 'logistic_regression_C_' + str(c).replace('.', '_'), classes)
 
+        elif i == 4:
+            # Naive Bayes
+            print('Running naive bayes models')
+            '''print('Running with Gaussian NB')
+            nb_model = NaiveBayesGaussianModel()
+            loss = experiment(nb_model, x_train, y_train, x_dev, y_dev, 'Gaussian_NB', classes)
+            print('Running with Multinomial NB')
+            nb_model = NaiveBayesMultinomialModel()
+            loss = experiment(nb_model, x_train, y_train, x_dev, y_dev, 'Multinomial_NB', classes)'''
+            print('Running with Bernoulli NB')
+            nb_model = NaiveBayesBernoulliModel()
+            loss = experiment(nb_model, x_train, y_train, x_dev, y_dev, 'Bernoulli_NB', classes)

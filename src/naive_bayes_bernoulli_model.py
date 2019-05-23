@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.naive_bayes import BernoulliNB
-import util.py
+import util
+from base_model import BaseModel
 
 class NaiveBayesBernoulliModel(BaseModel):
     """Perform BernoulliNB
@@ -10,12 +11,9 @@ class NaiveBayesBernoulliModel(BaseModel):
     > model.predict(x_eval)                                           
     """
 
-    def __init__(self, alpha=1.0, binarize=0.0, class_prior=None, fit_prior=True)
-one):
-        BaseModel.__init__(self,alpha=1.0, binarize=0.0, class_prior=None, fit_prior=True)
+    def __init__(self, step_size=0.2, max_iter=1e5, threshold=1e-5, verbose=False):
+        BaseModel.__init__(self, step_size, max_iter, threshold, verbose)
         self.clf = BernoulliNB()
-        clf.fit(x,y)
-        BernoulliNB(alpha=1.0, binarize=0.0, class_prior=None, fit_prior=None)
 
     def train(self, x, y):
         """fit classifier                                             
@@ -24,7 +22,7 @@ one):
             y: Training example labels. Shape (m,).                   
         """
         # *** START CODE HERE ***                                     
-        self.clf.fit(self, x, y, None)
+        self.clf.fit(x, y)
 
         # *** END CODE HERE ***                                       
 
