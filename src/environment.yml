@@ -8,3 +8,10 @@ dependencies:
   - python=3.6
   - pandas
   - scikit-learn
+  - nltk
+  - bottleneck
+  - pillow
+  - opencv
+  - keras
+  - h5py
+  - scipy
