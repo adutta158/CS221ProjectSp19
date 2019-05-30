@@ -6,6 +6,8 @@ from majority_classifier_model import MajorityClassifierModel
 from naive_bayes_bernoulli_model import NaiveBayesBernoulliModel
 from naive_bayes_gaussian_model import NaiveBayesGaussianModel
 from naive_bayes_multinomial_model import NaiveBayesMultinomialModel
+from mlp_model import MlpModel
+from cnn_model import CnnModel
 from sklearn.metrics import classification_report, accuracy_score, f1_score, log_loss, confusion_matrix
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
@@ -18,6 +20,7 @@ def experiment(model, x_train, y_train, x_dev, y_dev, model_name, class_names):
     # Train classifier
     model.train(x_train, y_train)
     c = len(class_names)
+    pickle.dump(model, open("output/" + model_name + ".p", "wb"))
     y_train_pred = model.predict(x_train)
     y_pred = model.predict(x_dev)
     loss = log_loss(util.one_hot(y_dev, c), util.one_hot(y_pred, c))
@@ -90,6 +93,47 @@ def experiment2(y_pred, y_dev, model_name):
     return loss
     # *** END CODE HERE ***
 
+def experiment3(model, x_train, y_train, x_dev, y_dev, model_name, class_names, batch, epoch):
+    # Train classifier
+    model.train(x_train, y_train, filename=model_name, batch=batch, epoch=epoch)
+    c = len(class_names)
+    pickle.dump(model, open("output/" + model_name + ".p", "wb"))
+    y_train_pred = model.predict(x_train)
+    y_pred = model.predict(x_dev)
+    loss = log_loss(util.one_hot(y_dev, c), util.one_hot(y_pred, c))
+    loss_train = log_loss(util.one_hot(y_train, c), util.one_hot(y_train_pred, c))
+
+    print('Train Accuracy = ' + str(accuracy_score(util.one_hot(y_train, c), util.one_hot(y_train_pred, c))))
+    print('Train Log Loss = ' + str(loss_train))
+    print('Test Accuracy = ' + str(accuracy_score(util.one_hot(y_dev, c), util.one_hot(y_pred, c))))
+    print('Test Log Loss = ' + str(loss))
+    print(classification_report(util.one_hot(y_dev, c), util.one_hot(y_pred, c), target_names=class_names))
+
+    plt.rcParams.update({'font.size': 8})
+    cm = confusion_matrix(y_dev, y_pred)
+    cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+    fig = plt.figure()
+    plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Reds)
+    plt.title("Confusion matrix")
+    plt.colorbar()
+    tick_marks = np.arange(len(class_names))
+    plt.xticks(tick_marks, range(0, 22))#, rotation=90)
+    plt.yticks(tick_marks, range(0, 22))
+
+    thresh = cm.max() / 2.
+    '''for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+        plt.text(j, i, format(cm[i, j], '.2f').replace('.00', '').replace('0.', '.'),
+                 horizontalalignment="center", verticalalignment="center",
+                 color="white" if cm[i, j] > thresh else "black")'''
+
+    plt.ylabel('True label index')
+    plt.xlabel('Predicted label index')
+    plt.tight_layout()
+    fig.savefig("output/cm_" + model_name)
+
+    return loss
+    # *** END CODE HERE ***
+
 # NOTE: For neural network we will to create a new experiment.py
 if __name__ == '__main__':
     print('Starting...')
@@ -122,6 +166,8 @@ if __name__ == '__main__':
         print("2. Run oracle model")
         print("3. Run logistic regression model")
         print("4. Run naive bayes model")
+        print("5. Run MLP")
+        print("6. Run CNN")
         print("0. Exit")
         print("---------------------------------------")
         i = int(input("Enter choice: "))
@@ -178,12 +224,28 @@ if __name__ == '__main__':
         elif i == 4:
             # Naive Bayes
             print('Running naive bayes models')
-            '''print('Running with Gaussian NB')
+            print('Running with Gaussian NB')
             nb_model = NaiveBayesGaussianModel()
             loss = experiment(nb_model, x_train, y_train, x_dev, y_dev, 'Gaussian_NB', classes)
             print('Running with Multinomial NB')
             nb_model = NaiveBayesMultinomialModel()
-            loss = experiment(nb_model, x_train, y_train, x_dev, y_dev, 'Multinomial_NB', classes)'''
+            loss = experiment(nb_model, x_train, y_train, x_dev, y_dev, 'Multinomial_NB', classes)
             print('Running with Bernoulli NB')
             nb_model = NaiveBayesBernoulliModel()
             loss = experiment(nb_model, x_train, y_train, x_dev, y_dev, 'Bernoulli_NB', classes)
+
+        elif i == 5:
+            # MLP
+            print('Running MLP model')
+            for b in [50]: #[1, 10, 50, 100]:
+                for e in [1]: #[1, 10, 50, 100, 250]:
+                    mlp_model = MlpModel(verbose=True, classes = len(classes))
+                    loss = experiment3(mlp_model, x_train, y_train, x_dev, y_dev, 'mlp_b'+str(b)+'_e'+str(e), classes, b, e)
+
+        elif i == 6:
+            # CNN
+            print('Running CNN model')
+            for b in [50]: #[1, 10, 50, 100]:
+                for e in [1]: #[1, 10, 50, 100, 250]:
+                    cnn_model = CnnModel(verbose=True, classes = len(classes))
+                    loss = experiment3(cnn_model, x_train, y_train, x_dev, y_dev, 'cnn_b'+str(b)+'_e'+str(e), classes, b, e)
