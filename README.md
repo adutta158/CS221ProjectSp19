@@ -33,6 +33,8 @@
 22. Umbrella
 
 ## Creating environment
+Install anaconda prompt from  https://www.anaconda.com/distribution/
+
 From the src folder, run "conda env create -f environment.yml"
 
 Next run "conda activate cs221Project"
