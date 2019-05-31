@@ -236,16 +236,16 @@ if __name__ == '__main__':
 
         elif i == 5:
             # MLP
-            for b in [1, 10, 50, 100]:
-                for e in [1, 10, 50, 100, 250]:
+            for b in [10, 50, 100]:
+                for e in [1, 10, 50]:
                     print('Running MLP model with batch size = ' + str(b) + ' and epochs = ' + str(e))
                     mlp_model = MlpModel(verbose=True, classes = len(classes))
                     loss = experiment3(mlp_model, x_train, y_train, x_dev, y_dev, 'mlp_b'+str(b)+'_e'+str(e), classes, b, e)
 
-        elif i == 6:
+            #elif i == 6:
             # CNN
-            for b in [50]: #[1, 10, 50, 100]:
-                for e in [1]: #[1, 10, 50, 100, 250]:
+            for b in [10, 50, 100]:
+                for e in [1, 10, 50]:
                     print('Running CNN model with batch size = ' + str(b) + ' and epochs = ' + str(e))
                     cnn_model = CnnModel(verbose=True, classes = len(classes))
                     loss = experiment3(cnn_model, x_train, y_train, x_dev, y_dev, 'cnn_b'+str(b)+'_e'+str(e), classes, b, e)
