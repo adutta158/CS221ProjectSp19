@@ -10,3 +10,4 @@ src/y_dev.p
 src/x_test.p
 src/y_test.p
 src/classes.p
+src/*.h5
