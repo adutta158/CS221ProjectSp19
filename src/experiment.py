@@ -168,6 +168,7 @@ if __name__ == '__main__':
         print("4. Run naive bayes model")
         print("5. Run MLP")
         print("6. Run CNN")
+        print("6. Run CNN2")
         print("0. Exit")
         print("---------------------------------------")
         i = int(input("Enter choice: "))
@@ -236,8 +237,8 @@ if __name__ == '__main__':
 
         elif i == 5:
             # MLP
-            for b in [10, 50, 100]:
-                for e in [1, 10, 50]:
+             for b in [10, 50, 100]:
+                for e in [1, 3, 10, 50]:
                     print('Running MLP model with batch size = ' + str(b) + ' and epochs = ' + str(e))
                     mlp_model = MlpModel(verbose=True, classes = len(classes))
                     loss = experiment3(mlp_model, x_train, y_train, x_dev, y_dev, 'mlp_b'+str(b)+'_e'+str(e), classes, b, e)
@@ -245,7 +246,15 @@ if __name__ == '__main__':
         elif i == 6:
             # CNN
             for b in [10, 50, 100]:
-                for e in [1, 10, 50]:
+                for e in [1, 3, 10, 50]:
                     print('Running CNN model with batch size = ' + str(b) + ' and epochs = ' + str(e))
                     cnn_model = CnnModel(verbose=True, classes = len(classes))
-                    #loss = experiment3(cnn_model, x_train, y_train, x_dev, y_dev, 'cnn_b'+str(b)+'_e'+str(e), classes, b, e)
+                    loss = experiment3(cnn_model, x_train, y_train, x_dev, y_dev, 'cnn_b'+str(b)+'_e'+str(e), classes, b, e)
+
+        elif i == 7:
+            # CNN2
+            for b in [10, 50, 100]:
+                for e in [1, 3, 10, 50]:
+                    print('Running CNN2 model with batch size = ' + str(b) + ' and epochs = ' + str(e))
+                    cnn_model = CnnModel(verbose=True, classes = len(classes))
+                    loss = experiment3(cnn_model, x_train, y_train, x_dev, y_dev, 'cnn2_b'+str(b)+'_e'+str(e), classes, b, e)
