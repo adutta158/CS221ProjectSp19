@@ -6,7 +6,7 @@ import util
 
 def main():
     # Load model
-    model = load_model('cnn_b50_e1.h5')
+    model = load_model('best_model.h5')
     image = np.zeros((600, 600, 3), dtype=np.uint8)
     cv2.namedWindow("Draw")
     global drawing, curr_x, curr_y
