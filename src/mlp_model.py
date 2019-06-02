@@ -29,6 +29,7 @@ class MlpModel(BaseModel):
                       metrics=["accuracy"])
 
         self.clf.summary()
+        self.C = classes
 
     def train(self, x, y, filename = "mlp", batch = 32, epoch = 1):
         """fit classifier
@@ -40,7 +41,7 @@ class MlpModel(BaseModel):
         if os.path.isfile(filename + '.h5'):
             self.clf = load_model(filename + '.h5')
         else:
-            self.clf.fit(x.reshape(x.shape[0], 28, 28), util.one_hot(y, 22), batch_size=batch, epochs=epoch)
+            self.clf.fit(x.reshape(x.shape[0], 28, 28), util.one_hot(y, self.C), batch_size=batch, epochs=epoch)
             self.clf.save(filename + '.h5')
         # *** END CODE HERE ***
 

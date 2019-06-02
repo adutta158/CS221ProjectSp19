@@ -40,8 +40,8 @@ def experiment(model, x_train, y_train, x_dev, y_dev, model_name, class_names):
     plt.title("Confusion matrix")
     plt.colorbar()
     tick_marks = np.arange(len(class_names))
-    plt.xticks(tick_marks, range(0, 22))#, rotation=90)
-    plt.yticks(tick_marks, range(0, 22))
+    plt.xticks(tick_marks, range(0, len(class_names)))#, rotation=90)
+    plt.yticks(tick_marks, range(0, len(class_names)))
 
     thresh = cm.max() / 2.
     '''for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
@@ -117,8 +117,8 @@ def experiment3(model, x_train, y_train, x_dev, y_dev, model_name, class_names, 
     plt.title("Confusion matrix")
     plt.colorbar()
     tick_marks = np.arange(len(class_names))
-    plt.xticks(tick_marks, range(0, 22))#, rotation=90)
-    plt.yticks(tick_marks, range(0, 22))
+    plt.xticks(tick_marks, range(len(class_names))) # rotation=90)
+    plt.yticks(tick_marks, range(len(class_names)))
 
     thresh = cm.max() / 2.
     '''for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
@@ -168,7 +168,7 @@ if __name__ == '__main__':
         print("4. Run naive bayes model")
         print("5. Run MLP")
         print("6. Run CNN")
-        print("6. Run CNN2")
+        print("7. Run CNN2")
         print("0. Exit")
         print("---------------------------------------")
         i = int(input("Enter choice: "))
