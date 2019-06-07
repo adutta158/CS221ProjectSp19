@@ -13,7 +13,7 @@ class MajorityClassifierModel(BaseModel):
         > model.predict(x_eval)
     """
 
-    def __init__(self, step_size=0.2, max_iter=1e5, threshold=1e-5, verbose=False, alpha=0, seed = None, penalty = 'l2', class_weight = None):
+    def __init__(self, step_size=0.2, max_iter=1e5, threshold=1e-5, verbose=False):
         BaseModel.__init__(self, step_size, max_iter, threshold, verbose)
         self.majorityClass = 0
         self.C = None

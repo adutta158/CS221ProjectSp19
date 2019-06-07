@@ -1,6 +1,5 @@
-import numpy as np
 from keras.models import Sequential, load_model
-from keras.layers import Dense, Activation, Flatten, Dropout, Conv2D, MaxPooling2D
+from keras.layers import Dense, Flatten, Dropout, Conv2D, MaxPooling2D
 import util
 import os
 from base_model import BaseModel
@@ -17,7 +16,7 @@ class CnnModel(BaseModel):
         # Create model architecture
         self.clf = Sequential()
         self.clf.add(Conv2D(filters=16, kernel_size=2, padding="same", activation="relu",
-                         input_shape=shape))
+                            input_shape=shape))
         self.clf.add(MaxPooling2D(pool_size=2))
         self.clf.add(Conv2D(filters=32, kernel_size=2, padding="same", activation="relu"))
         self.clf.add(MaxPooling2D(pool_size=2))

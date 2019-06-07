@@ -1,6 +1,5 @@
-import numpy as np
 from keras.models import Sequential, load_model
-from keras.layers import Dense, Activation, Flatten, Dropout, Conv2D, MaxPooling2D
+from keras.layers import Dense, Flatten, Dropout, Conv2D, MaxPooling2D
 import util
 import os
 from base_model import BaseModel

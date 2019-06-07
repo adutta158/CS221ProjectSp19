@@ -1,4 +1,3 @@
-import os
 import numpy as np
 import util
 from logistic_regression_model import LogisticRegressionModel
@@ -8,10 +7,10 @@ from naive_bayes_gaussian_model import NaiveBayesGaussianModel
 from naive_bayes_multinomial_model import NaiveBayesMultinomialModel
 from mlp_model import MlpModel
 from cnn_model import CnnModel
+from cnn2_model import Cnn2Model
 from sklearn.metrics import classification_report, accuracy_score, f1_score, log_loss, confusion_matrix
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
-import itertools
 import pickle
 
 seed = 42 # for reproducibility
@@ -40,14 +39,8 @@ def experiment(model, x_train, y_train, x_dev, y_dev, model_name, class_names):
     plt.title("Confusion matrix")
     plt.colorbar()
     tick_marks = np.arange(len(class_names))
-    plt.xticks(tick_marks, range(0, len(class_names)))#, rotation=90)
+    plt.xticks(tick_marks, range(0, len(class_names)))
     plt.yticks(tick_marks, range(0, len(class_names)))
-
-    thresh = cm.max() / 2.
-    '''for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, format(cm[i, j], '.2f').replace('.00', '').replace('0.', '.'),
-                 horizontalalignment="center", verticalalignment="center",
-                 color="white" if cm[i, j] > thresh else "black")'''
 
     plt.ylabel('True label index')
     plt.xlabel('Predicted label index')
@@ -76,14 +69,8 @@ def experiment2(y_pred, y_dev, model_name):
     plt.title("Confusion matrix")
     plt.colorbar()
     tick_marks = np.arange(c)
-    plt.xticks(tick_marks, range(0, 22))#, rotation=90)
+    plt.xticks(tick_marks, range(0, 22))
     plt.yticks(tick_marks, range(0, 22))
-
-    thresh = cm.max() / 2.
-    '''for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, format(cm[i, j], '.2f').replace('.00', '').replace('0.', '.'),
-                 horizontalalignment="center", verticalalignment="center",
-                 color="white" if cm[i, j] > thresh else "black")'''
 
     plt.ylabel('True label index')
     plt.xlabel('Predicted label index')
@@ -117,14 +104,8 @@ def experiment3(model, x_train, y_train, x_dev, y_dev, model_name, class_names, 
     plt.title("Confusion matrix")
     plt.colorbar()
     tick_marks = np.arange(len(class_names))
-    plt.xticks(tick_marks, range(len(class_names))) # rotation=90)
+    plt.xticks(tick_marks, range(len(class_names)))
     plt.yticks(tick_marks, range(len(class_names)))
-
-    thresh = cm.max() / 2.
-    '''for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, format(cm[i, j], '.2f').replace('.00', '').replace('0.', '.'),
-                 horizontalalignment="center", verticalalignment="center",
-                 color="white" if cm[i, j] > thresh else "black")'''
 
     plt.ylabel('True label index')
     plt.xlabel('Predicted label index')
@@ -256,5 +237,5 @@ if __name__ == '__main__':
             for b in [10, 50, 100]:
                 for e in [1, 3, 10, 50]:
                     print('Running CNN2 model with batch size = ' + str(b) + ' and epochs = ' + str(e))
-                    cnn_model = CnnModel(verbose=True, classes = len(classes))
-                    loss = experiment3(cnn_model, x_train, y_train, x_dev, y_dev, 'cnn2_b'+str(b)+'_e'+str(e), classes, b, e)
+                    cnn2_model = Cnn2Model(verbose=True, classes = len(classes))
+                    loss = experiment3(cnn2_model, x_train, y_train, x_dev, y_dev, 'cnn2_b'+str(b)+'_e'+str(e), classes, b, e)

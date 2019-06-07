@@ -6,7 +6,7 @@ import util
 
 def main():
     # Load model
-    model = load_model('best_model.h5')
+    model = load_model('trained_model.h5')
     image = np.zeros((600, 600, 3), dtype=np.uint8)
     cv2.namedWindow("Draw")
     global drawing, curr_x, curr_y
@@ -44,13 +44,11 @@ def main():
             image = np.array(image, dtype=np.float32)[None, :, :, None]
             pred_class = model.predict_classes(image)
             classes = pickle.load(open("classes.p", "rb"))
-            #util.plotImage(image, classes[pred_class[0]])
+            util.plotImage(image, classes[pred_class[0]])
             print('Is it ' + classes[pred_class[0]] + '? ')
             image = np.zeros((600, 600, 3), dtype=np.uint8)
             curr_x = -1
             curr_y = -1
-
-
 
 if __name__ == '__main__':
     main()

@@ -1,6 +1,5 @@
-import numpy as np
 from keras.models import Sequential
-from keras.layers import Dense, Activation, Flatten, Dropout
+from keras.layers import Dense, Flatten, Dropout
 from keras.models import load_model
 import util
 import os

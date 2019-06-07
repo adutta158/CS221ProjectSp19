@@ -1,6 +1,4 @@
-import numpy as np
 from sklearn.naive_bayes import BernoulliNB
-import util
 from base_model import BaseModel
 
 class NaiveBayesBernoulliModel(BaseModel):

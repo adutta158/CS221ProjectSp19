@@ -43,28 +43,6 @@ def one_hot(y, C=None):
 
     return np.squeeze(np.eye(C)[y.astype('int')])
 
-def plot_cm(model, x, y, target_names, filepath):
-    cm = confusion_matrix(y, model.predict(x))
-
-    fig = plt.figure()
-    plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
-    plt.title("Confusion matrix")
-    plt.colorbar()
-    tick_marks = np.arange(len(target_names))
-    plt.xticks(tick_marks, target_names, rotation=45)
-    plt.yticks(tick_marks, target_names)
-
-    thresh = cm.max() / 2.
-    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, format(cm[i, j]),
-                 horizontalalignment="center",
-                 color="white" if cm[i, j] > thresh else "black")
-
-    plt.ylabel('True label')
-    plt.xlabel('Predicted label')
-    plt.tight_layout()
-    fig.savefig(filepath)
-
 def plotImage(imgArr, label):
     imgArr = np.reshape(imgArr,(28, 28))
     plt.imshow(imgArr, cmap='gray')
