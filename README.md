@@ -1,10 +1,11 @@
 # CS221 Project Spring '19 
 #### Classification <and Generation> of Hand-Drawn Doodles
 
-## Overleaf links
-- [Project Proposal](https://www.overleaf.com/4471386335bswnnjtryszb)
-- [Progress Report](https://www.overleaf.com/2186518721bfkwcrpyjcnk)
-- [Final Report](https://www.overleaf.com/2837455734bbxwgzvpvmty)
+## Submissions
+- Project Proposal: proposal.pdf
+- Progress Report: progress_report.pdf
+- Poster: poster.pdf
+- Final Report: final_report.pdf
 
 ## Dataset
 - Download data for the classes listed below from [here](https://console.cloud.google.com/storage/browser/quickdraw_dataset/full/numpy_bitmap?pli=1) and place in the data folder.
