@@ -1,5 +1,5 @@
-# CS221 Project Spring '19 
-#### Classification <and Generation> of Hand-Drawn Doodles
+# Classification Models for Sketch Drawings
+#### CS221 Project Spring 2019
 
 ## Submissions
 - Project Proposal: proposal.pdf
